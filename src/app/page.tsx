@@ -164,16 +164,16 @@ const HomePage = () => {
     scales: {
       x: {
         grid: {
-          display: false, // Hide vertical grid lines
+          display: false,
         },
       },
       y: {
         beginAtZero: true,
         ticks: {
-          stepSize: 20, // Set step size to 20
+          stepSize: 20,
         },
         grid: {
-          display: true, // Show horizontal grid lines
+          display: true,
         },
       },
     },
@@ -200,6 +200,7 @@ const HomePage = () => {
     );
   };
 
+  console.log({ patientLatestResults })
 
   return (
     <main className=" flex min-h-screen flex-col my-6">
@@ -270,12 +271,15 @@ const HomePage = () => {
 
             </div>
 
+
+
             <div className="flex justify-between pt-6">
               <DiagnosticCard color="#E0F3FA" image='/respiratoryRate.png' alt='respiratory' name="Respiratory Rate" measurement={`${patientLatestResults?.respiratory_rate
-                .value || 0} bpm`} />
+                .value || 0} bpm`} Level={getSystolicLevelComponent(patientLatestResults?.respiratory_rate.levels)} />
               <DiagnosticCard color="#FFE6E9" image='/temperature.png' alt='temparature' name="Temperature" measurement={`${patientLatestResults?.temperature
-                .value || 0} F`} />
-              <DiagnosticCard color="#FFE6F1" image='/HeartBPM.png' alt='heart' name="Heart Rate" measurement={`${patientLatestResults?.heart_rate.value || 0} bpm`} />
+                .value || 0} F`} Level={getSystolicLevelComponent(patientLatestResults?.temperature
+                  .levels)} />
+              <DiagnosticCard color="#FFE6F1" image='/HeartBPM.png' alt='heart' name="Heart Rate" measurement={`${patientLatestResults?.heart_rate.value || 0} bpm`} Level={getSystolicLevelComponent(patientLatestResults?.heart_rate.levels)} />
 
             </div>
           </div>
